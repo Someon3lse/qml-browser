@@ -46,7 +46,7 @@ QString BrowserSettings::searchEngine()
     beginGroup(BROWSER_GROUP);
     QString v = value("SearchEngine").toString();
     if(v.isEmpty()) {
-        v = QString("google.com");
+        v = QString("Google");
     }
     endGroup();
     return v;

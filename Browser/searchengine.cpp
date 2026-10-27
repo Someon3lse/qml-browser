@@ -18,17 +18,26 @@
 ****************************************************************************/
 #include "searchengine.h"
 #include <QUrlQuery>
+#include <QHash>
+#include <QPair>
 #include "browsersettings.h"
 
-#define ENGINE_GOOGLE QLatin1String("google.com")
-#define ENGINE_DUCKDUCKGO QLatin1String("duckduckgo.com")
-#define ENGINE_YAHOO QLatin1String("yahoo.com")
-
-QStringList SearchEngine::engineList = {
-    ENGINE_GOOGLE,
-    ENGINE_DUCKDUCKGO,
-    ENGINE_YAHOO
+static const QHash<QString,QPair<QString, QString>> searchEngines = {
+    {"Google", {"https://google.com/search", "q"}},
+    {"DuckDuckGo", {"https://duckduckgo.com/", "q"}},
+    {"Yahoo",  {"https://search.yahoo.com/search", "p"}},
+    {"Ecosia", {"https://www.ecosia.org/search", "q"}},
+    {"Qwant", {"https://www.qwant.com/?q=", "q"}},
+    {"Brave", {"https://search.brave.com/search", "q"}},
+    {"Bing", {"https://www.bing.com/search", "q"}},
+    {"PrivacyWall", {"https://search.privacywall.org/search", "q"}},
+    {"Baidu", {"https://www.baidu.com/s", "wd"}},
+    {"Yandex", {"https://yandex.com/search/", "text"}},
+    {"Startpage", {"https://www.startpage.com/sp/search", "query"}}
 };
+
+QStringList SearchEngine::engineList = searchEngines.keys();
+
 
 SearchEngine::SearchEngine(QObject *parent)
     : QObject{parent}
@@ -41,16 +50,8 @@ QUrl SearchEngine::searchUrl(QString text)
     QString engineName = browserSettings->searchEngine();
     QUrl url;
     QUrlQuery query;
-    if(engineName == ENGINE_DUCKDUCKGO) {
-        url.setUrl("https://duckduckgo.com/");
-        query.addQueryItem(QLatin1String("q"), text);
-    } else if( engineName == ENGINE_YAHOO) {
-        url.setUrl("https://search.yahoo.com/search");
-        query.addQueryItem(QLatin1String("p"), text);
-    } else {
-        url.setUrl("https://www.google.com/search");
-        query.addQueryItem(QLatin1String("q"), text);
-    }
+    url.setUrl(searchEngines[engineName].first);
+    query.addQueryItem(searchEngines[engineName].second, text);
     url.setQuery(query);
     return url;
 }

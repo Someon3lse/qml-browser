@@ -80,7 +80,9 @@ unix {
 DISTFILES += \
     Api.pri \
     tools/downloads/main.qml \
-    tools/error/main.qml
+    tools/error/main.qml \
+    tools/install/main.qml \
+    tools/settings/main.qml
 
 LIBS += -L$$OUT_PWD/../App/ -lApp
 LIBS += -L$$OUT_PWD/../Net/ -lNet
