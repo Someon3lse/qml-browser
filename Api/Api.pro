@@ -79,6 +79,7 @@ unix {
 
 DISTFILES += \
     Api.pri \
+    tools/dapps/main.qml \
     tools/downloads/main.qml \
     tools/error/main.qml \
     tools/install/main.qml \

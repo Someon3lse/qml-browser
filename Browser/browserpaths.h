@@ -33,6 +33,7 @@ public:
     QLatin1String const static settingsManagerName;
     QLatin1String const static blankPageName;
     QLatin1String const static errorPageName;
+    QLatin1String const static dappManagerPageName;
     QString const static installPageName;
 
     QString static historyManagerPath();

@@ -28,6 +28,7 @@ QLatin1String const BrowserPaths::bookmarksManagerName = QLatin1String("bookmark
 QLatin1String const BrowserPaths::settingsManagerName = QLatin1String("settings");
 QLatin1String const BrowserPaths::blankPageName = QLatin1String("blank");
 QLatin1String const BrowserPaths::errorPageName = QLatin1String("error");
+QLatin1String const BrowserPaths::dappManagerPageName = QLatin1String("dapps");
 QString const BrowserPaths::installPageName = QLatin1String("install");
 
 
